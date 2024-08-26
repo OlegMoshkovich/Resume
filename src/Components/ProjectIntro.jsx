@@ -3,7 +3,7 @@ import {
   AppBar,
   Box,
   Button,
-  Dialog,
+  Paper,
   IconButton,
   Slide,
   Stack,
@@ -25,12 +25,14 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 // import CropPortraitIcon from '@mui/icons-material/CropPortrait';
 import Corousel from './Corousel';
+import Dialog from './Dialog'
+import Description from './Description'
 
 const Transition = React.forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
 ));
 
-const Projects = () => {
+const ProjectIntro = () => {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState('grid'); // State to manage views
   const [isReversed, setIsReversed] = useState(true); // State to manage order of projects
@@ -73,22 +75,7 @@ const Projects = () => {
   const displayedProjects = isReversed ? ProjectsObj : [...ProjectsObj].reverse();
 
   return (
-    <>
-      <Button
-        variant="text"
-        size="small"
-        sx={{ borderRadius: '14px', padding: '5px 10px' }}
-        color="primary"
-        onClick={() => setOpen(true)}
-      >
-        Projects
-      </Button>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={() => setOpen(false)}
-        TransitionComponent={Transition}
-      >
+    <Paper>
         <AppBar
           sx={{
             boxShadow: 'none',
@@ -98,13 +85,28 @@ const Projects = () => {
         >
           <Toolbar>
             <Stack direction="row" justifyContent="center" alignItems="center" sx={{ ml: '-10px' }}>
+            <Dialog
+            buttonTitle='Oleg Moshkovich'
+            actionTitle={'OK'}
+            dialogTitle={
+              <Typography variant='body2'>
+                {'About'}
+              </Typography>
+            }
+            dialogContent={
+            <Stack direction='column' justifyContent={'center'} alignItems={'center'}>
+              <Description/>
+                {/* <Typography variant='body2'>
+                  'hello'
+                </Typography> */}
+            </Stack>
+            }
+          />
               <Typography variant="p" color="primary" sx={{ ml: 2, fontWeight: 'bold' }}>
-                Projects
+                {/* Oleg Moshkovich */}
               </Typography>
             </Stack>
             <Box sx={{ flexGrow: 1 }} />
-
-            {/* Grid View Button */}
             <IconButton
               sx={{
                 margin: '0 4px',
@@ -152,10 +154,6 @@ const Projects = () => {
                   <KeyboardArrowLeftIcon fontSize="small" />
                 )
               )}
-            </IconButton>
-
-            <IconButton sx={{ margin: '0 4px' }} size="small" onClick={() => setOpen(false)}>
-              <CloseIcon fontSize="small" />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -224,9 +222,8 @@ const Projects = () => {
 
         {/* Corousel View */}
         {view === 'corousel' && <Corousel />}
-      </Dialog>
-    </>
+    </Paper>
   );
 };
 
-export default Projects;
+export default ProjectIntro;

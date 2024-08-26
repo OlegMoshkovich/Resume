@@ -7,6 +7,8 @@ import { useTheme } from '@mui/material/styles';
 import Description from './Components/Description'
 import Palette from './Components/Palette'
 import Social from './Components/Social'
+import Projects from './Components/Projects'
+import ProjectIntro from './Components/ProjectIntro'
 
 
 function Share() {
@@ -14,8 +16,10 @@ function Share() {
 
   return (
     <>
-    <AppBar/>
-    <Stack
+    {/* <AppBar/>
+    <Projects/> */}
+    <ProjectIntro/>
+    {/* <Stack
       direction='row'
       justifyContent="center"
       alignItems="center"
@@ -28,11 +32,11 @@ function Share() {
       }}
     >
       <Description/>
-    </Stack>
-    <Box sx={{position: 'absolute', bottom: 14, left: 20}}>
+    </Stack> */}
+    <Box sx={{position: 'fixed', bottom: 14, left: 20}}>
       <Palette/>
     </Box>
-    <Box sx={{position: 'absolute', bottom: 14, right: 20}}>
+    <Box sx={{position: 'fixed', bottom: 14, right: 20}}>
       <Social/>
     </Box>
     </>
